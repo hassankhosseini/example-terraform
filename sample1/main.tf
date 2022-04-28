@@ -1,3 +1,12 @@
+terraform {
+  cloud {
+    organization = "infracost-test"
+
+    workspaces {
+      name = "demo"
+    }
+  }
+}
 provider "aws" {
   region                      = "us-east-1" # <<<<< Try changing this to eu-west-1 to compare the costs
   skip_credentials_validation = true
@@ -8,7 +17,7 @@ provider "aws" {
 
 resource "aws_instance" "web_app" {
   ami           = "ami-674cbc1e"
-  instance_type = "m5.4xlarge"              # <<<<< Try changing this to m5.8xlarge to compare the costs
+  instance_type = "m4.xlarge"              # <<<<< Try changing this to m5.8xlarge to compare the costs
 
   root_block_device {
     volume_size = 50
